@@ -1,0 +1,8 @@
+.env
+.vscode
+agentic_trading_system.egg-info/
+venv_bot/
+.env
+venv_bot
+.vscode/
+agentic_trading_system.egg-info
