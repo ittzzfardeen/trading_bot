@@ -1,5 +1,5 @@
 vector_db:
-  vector_name: "test"
+    index_name: "trading-bot"
 
 embedding_model:
   provider_name: "openai"
@@ -10,9 +10,18 @@ llm:
   model: "llama-3.1-8b-instant"
 
 
+
+
 retriever:
   top_k: 3
+  score_threshold: 0.5
 
+
+
+
+tools:
+  tavily:
+    max_results: 5
 
 
 
