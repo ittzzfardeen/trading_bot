@@ -42,7 +42,7 @@ with st.sidebar:
                         else:
                             st.error("❌ Upload failed: " + response.text)
                 except Exception as e:
-                    raise TradingBotException(e, sys)
+                    raise Tradingbotexception(e, sys)
             else:
                 st.warning("Some files were empty or unreadable.")
 
@@ -77,4 +77,4 @@ if submit_button and user_input.strip():
             st.error("❌ Bot failed to respond: " + response.text)
 
     except Exception as e:
-        raise TradingBotException(e, sys)
+        raise Tradingbotexception(e, sys)

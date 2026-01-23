@@ -1,10 +1,15 @@
-from langgraph.graph import StateGraph ,START
+from langgraph.graph import StateGraph ,START,state,MessagesState
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt.tool_node import ToolNode ,tools_condition
 from langchain_core.messages import AIMessage,HumanMessage
 from typing_extensions import Annotated,TypedDict
 from utlis.model_loader import ModelLoader
 from toolkit.tools import *
+
+
+
+class State(TypedDict):
+    message:Annotated[list,add_messages]
 
 
 
@@ -17,11 +22,11 @@ class GraphBuilder:
         self.llm_with_tools = llm_with_tools
         self.graph = None
     
-    def _chatbot_node(self,state:StateGraph):
+    def _chatbot_node(self,state:dict):
          return {"messages": [self.llm_with_tools.invoke(state["messages"])]}
 
     def build(self):
-        graph_builder = StateGraph(StateGraph)
+        graph_builder = StateGraph(MessagesState)
         
         graph_builder.add_node("chatbot", self._chatbot_node)
         
@@ -37,4 +42,6 @@ class GraphBuilder:
     def get_graph(self):
         if self.graph is None:
             raise ValueError("Graph not built. Call build() first.")
-        return self.graph
+        return self.graph 
+    
+    
